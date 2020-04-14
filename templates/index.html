@@ -1,0 +1,118 @@
+<!doctype html>
+
+<html>
+    <head>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            ::placeholder{
+                font-size: 13px;
+
+            }
+            input{
+                font-size: 13px; border-radius: 5%; background: whitesmoke; width:100%; height:35px; padding: 3px; align-content: center; border: none; outline: black 
+            }
+            .form-control:focus {
+                border-color: inherit;
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+            
+            ul
+            {   overflow-x:hidden;
+                white-space:nowrap; 
+                width: 100%;
+                margin-top: 150px;
+                height: 50px
+            } 
+
+            li
+            {   display: inline; 
+                margin-bottom: 7px;
+                margin-right: 16px;
+            }
+            .column {
+                float: left;
+                width: 50%;
+                padding-top: 8px;
+                padding-bottom: 8px;
+                }
+
+                /* Clear floats after image containers */
+            .row::after {
+                content: "";
+                clear: both;
+                display: table;
+                }
+
+                #footer {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    height: 2.5rem;            /* Footer height */
+                    }
+
+        </style>
+        <title>
+            rFlairDetector
+        </title>
+    </head>
+    <body style="margin-top: 10px; background: black">
+        <div class = "row" style='background: white; width: 100%; height: 80px'>
+            <div class="column" style="padding-left: 38%;">
+                <img src='../assets/reddit.png' style='height: 65px'>
+            </div>
+            <div class="column" style="padding-top: 20px;">
+                <img src='../assets/fd.png' style="height: 37px;">
+            </div>
+        </div>
+        <div style='margin-top: 5%; margin-left: 35%; background: white; width: 600px; height: 350px; padding: 20px;text-align: center; border: 0.02px solid rgb(0,0,0,0.1);'>
+            <!-- <img src='reddit.png' style='width: 70%; height: 75px'> -->
+            <br /><br />
+            <form action = "{{ url_for('main') }}" method = "POST">
+                <fieldset>
+                    <input name = "url" onchange="gopaque(1);" type='text' placeholder="Link to the Reddit Post" style = 'text-align: center; background: rgba(236, 236, 231, 0.904) ; color: black; border: solid black; border-radius: 5%; height: 50px;' class='input' required />
+                    <!-- <input type='password' placeholder="Password" class='input' style='margin-top: 10px' required /> -->
+                    <input type = "submit" id='but' placeholder="Know the Flair!" type="submit" class="btn btn-primary" style='width:100%; height: 50px; margin-top: 20px; opacity: 0.5; background: black; color: whitesmoke;' />
+                </fieldset>
+            </form>
+            <!-- <h6 style = 'font-size: 13px;margin-top: 5px; opacity: 0.5'>
+            OR
+            </h6> -->
+            <!-- <button style='width:100%; height: 20px; border: none; background: white; color: rgb(57, 57, 133); margin-top: 10px; font-size: 15px'>
+                <img src='768px-F_icon.svg.png' style='height:17px; width: 18px;' />
+            &nbsp;
+                Log in with Facebook
+            </button> -->
+            <!-- <br /> <br />
+            <a style='font-size: 12px; color: rgb(57, 57, 133);'>Forgot password?</a> -->
+        </div>
+        <div style='padding-top:18px; margin-top: 8px; margin-left: 35%; width: 600px; text-align: center; align-content: center; background: white; border: 1px solid rgb(0,0,0,0.1);'>
+            {% if pred %}
+                <b>Actual Flair:</b>
+                <br>
+                <h3>{{ act }}</h3>
+                <br>
+                <b>Predicted Flair:</b>
+                <br>
+                <h3>{{ pred }}</h3>
+            {% endif %}
+        </div>
+        <footer id = "footer">
+            <!-- <div style='margin-top: 90%; font-size: 12px; color: thistle; font-weight: 600; margin: 0 auto; text-transform: uppercase; width: 100%; display: flex; text-align: center; align-items: stretch'> -->
+            <div style="background-color: rgba(236, 236, 231, 0.904); color: black; height: auto; text-align: center; padding-top: 5px;"><b><h4>Made by <a href = "https://github.com/RachitBansal">Rachit Bansal</a></h4></b></div>
+            <!-- </div> -->
+        </footer>
+    </body>
+    <script>
+        var i = 0
+        function gopaque(a){
+            i += Number(a)
+            if(i%2!=0){
+                document.getElementById('but').style.opacity=1
+            }
+            else{
+                document.getElementById('but').style.opacity=0.5
+            }
+        }
+    </script>
+</html>
