@@ -81,24 +81,31 @@ The following figure depicts the data distribution across the flairs:
 The results of different models on the test set:
 
 | Model | Features        | Accuracy             |       
-| ---   | ---                  | ---   |  
-| Logistic Regression | Title + SelfText + URL <br> <b>Title + URL</b> <br> Title | 61.7 <br> <b>63.8<b> <br> 58.4 |
-| MultinomialNB  | Title + SelfText + URL <br> Title + URL <br> Title | 51.8 <br> - <br> - |
-| SVM Classifier  | Title + SelfText + URL <br> Title + URL <br> Title | 48.5 <br> - <br> 49.4 |
-| Random Forest  | Title + SelfText + URL <br> Title + URL <br> Title | 61.7 <br> 63.8 <br> 58.4 |
+| ---   | ---                  | ---   |
+| Machine Learning Models:      |         |         |
+| Logistic Regression | Title + SelfText + URL <br> Title + URL <br> Title | 61.7 <br> 63.8 <br> 58.4 |
+| MultinomialNB  | Title + SelfText + URL <br> Title + URL <br> Title | 51.8 <br> 52.0 <br> 52.1 |
+| SVM Classifier  | Title + SelfText + URL <br> Title + URL <br> Title | 48.5 <br> 49.5 <br> 40.0 |
+| Random Forest  | Title + SelfText + URL <br> Title + URL <br> Title | - <br> - <br> - |
+| Deep Learning Models:     |               |              |
 | LSTM | Title | 58.6 |
 | DistilBERT  | Title  | 72.7 |
-| RoBERTa  | Title | 78.00 |
+| <b>RoBERTa</b>  | <b>Title</b> | <b>78.00</b> |
   
 The following table elaborates the implementation details of each model:
 
 | Models             | Dependencies           | Additional Techniques            |
-| Logistic Regression, MultinomialNB, SVM, Random Forest | SciKit Learn, NLTK   | The Title, SelfText and URL were seperately processed using Regular Expressions |
-| LSTM | PyTorch, TorchText | Completely implemented using PyTorch, the input and output texts were represented in the form of TorchText Data Objects.
-| Tranformer Based Models | PyTorch, HuggingFace Transformers| Pretrained weights from [Hugging Face Tranformers](https://huggingface.co/transformers/pretrained_models.html) were Fine-Tunes on the _balanced out_* dataset.
+| ---       | ---       | ----      |
+| Logistic Regression, MultinomialNB, SVM, Random Forest | SciKit Learn, NLTK   | The Title, SelfText and URL were seperately <br> processed using Regular Expressions |
+| LSTM | PyTorch, TorchText | Completely implemented using PyTorch, the input and output texts were represented <br> in the form of TorchText Data Objects. |
+| Tranformer Based Models | PyTorch, HuggingFace Transformers| Pretrained weights from [Hugging Face Tranformers](https://huggingface.co/transformers/pretrained_models.html) were Fine-Tuned <br> on the _balanced out_* dataset. |
 
+## Future Work
+- Performing more experiments on the Deep Learning models with Hyperparameter Tuning and a more _balanced out_ dataset. 
+- Testing the performance of the models on other combinations of the input data.
+- Working out methods to extract the comments of the Reddit Posts so as to provide more of relevant features to the models. 
 
-## Reference
+## References
 - pushshift.io - [GitHub Repsitory and Documentation](https://github.com/pushshift/api)
 - Pytorch Implementation of BERT - [HuggingFace Github repo](https://github.com/huggingface/pytorch-pretrained-BERT)
 - [Simple Transformers](https://github.com/ThilinaRajapakse/simpletransformers#saveevalcheckpoints)
