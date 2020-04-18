@@ -72,7 +72,39 @@ There were 740 different kinds flairs in the data extracted using pushshift, the
 
 After all these pre-processing steps, the pushshift data was reduced to ```24 flairs across a total of 446283 (~.45M) rows```.
 
-The following figure depicts the distribution across the flairs: 
+The following figure depicts the data distribution across the flairs: 
 
 ![Flair Distribution](./imgs/data.png)
 
+## Data Modelling
+
+The results of different models on the test set:
+
+| Model | Features        | Accuracy             |       
+| ---   | ---                  | ---   |  
+| Logistic Regression | Title + SelfText + URL <br> <b>Title + URL</b> <br> Title | 61.7 <br> <b>63.8<b> <br> 58.4 |
+| MultinomialNB  | Title + SelfText + URL <br> Title + URL <br> Title | 51.8 <br> - <br> - |
+| SVM Classifier  | Title + SelfText + URL <br> Title + URL <br> Title | 48.5 <br> - <br> 49.4 |
+| Random Forest  | Title + SelfText + URL <br> Title + URL <br> Title | 61.7 <br> 63.8 <br> 58.4 |
+| LSTM | Title | 58.6 |
+| DistilBERT  | Title  | 72.7 |
+| RoBERTa  | Title | 78.00 |
+  
+The following table elaborates the implementation details of each model:
+
+| Models             | Dependencies           | Additional Techniques            |
+| Logistic Regression, MultinomialNB, SVM, Random Forest | SciKit Learn, NLTK   | The Title, SelfText and URL were seperately processed using Regular Expressions |
+| LSTM | PyTorch, TorchText | Completely implemented using PyTorch, the input and output texts were represented in the form of TorchText Data Objects.
+| Tranformer Based Models | PyTorch, HuggingFace Transformers| Pretrained weights from [Hugging Face Tranformers](https://huggingface.co/transformers/pretrained_models.html) were Fine-Tunes on the _balanced out_* dataset.
+
+
+## Reference
+- pushshift.io - [GitHub Repsitory and Documentation](https://github.com/pushshift/api)
+- Pytorch Implementation of BERT - [HuggingFace Github repo](https://github.com/huggingface/pytorch-pretrained-BERT)
+- [Simple Transformers](https://github.com/ThilinaRajapakse/simpletransformers#saveevalcheckpoints)
+- [Cho et. al. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation. 2014](https://arxiv.org/pdf/1406.1078.pdf)
+- [Devlin et. al. BERT: Pre-training of Deep Bidirectional Transformers for
+Language Understanding. 2018 ](https://arxiv.org/pdf/1810.04805)
+- [Jeremy Howard, Sebastian Ruder. ULMFIT. 2018](https://arxiv.org/pdf/1801.06146.pdf)
+- [ Vasvani et. al. Attention is all you need. Nips 2017](https://arxiv.org/pdf/1706.03762)
+- [Deploying ML Models on Heroku](https://towardsdatascience.com/create-an-api-to-deploy-machine-learning-models-using-flask-and-heroku-67a011800c50)
