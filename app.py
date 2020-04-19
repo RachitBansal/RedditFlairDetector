@@ -1,19 +1,19 @@
 import flask
 from flask import Flask, render_template, session, redirect, url_for, session
 import numpy as np
-import joblib
+# import joblib
 import requests
 import os
-import pickle as pkl
+# import pickle as pkl
 import praw
 import nltk
 from nltk.stem import WordNetLemmatizer
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.pipeline import make_pipeline
+# from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+# from sklearn.pipeline import make_pipeline
 from nltk.corpus import stopwords
 import re
-import contractions
-import sklearn
+# import contractions
+# import sklearn
 
 app = flask.Flask(__name__, template_folder='templates', static_folder='assets')
 
@@ -35,11 +35,11 @@ def main():
         data[1] = processURL(data[1])
         data[2] = process(data[2])
 
-        model = pkl.load(open('model_lr.pkl', 'rb'))
-        prediction = model.predict([data[0] + ' ' + data[2] + ' ' + data[1]])
+        # model = pkl.load(open('model_lr.pkl', 'rb'))
+        # prediction = model.predict([data[0] + ' ' + data[2] + ' ' + data[1]])
         actual = data[3]
 
-        return flask.render_template('index.html', pred = prediction, act = actual)
+        return flask.render_template('index.html', pred = actual, act = actual)
 
 wnl = WordNetLemmatizer()
 remove =set(stopwords.words('english'))
