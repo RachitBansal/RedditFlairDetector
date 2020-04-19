@@ -1,5 +1,5 @@
-praw==6.5.1
 Flask==1.0.2
 requests==2.21.0
+praw==6.5.1
 numpy==1.16.2
 nltk==3.4.4
