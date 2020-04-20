@@ -70,11 +70,15 @@ There were 740 different kinds flairs in the data extracted using pushshift, the
 - There were a variety of flairs containing only a few data points corresponding to them, all such rows belonging to flairs with net data < 500 were removed. 
 - Certain exceptions in the data had NULL values for either the ```title``` or the ```link_flair_text```, which are the main input and output values in our data respectively. Such exceptions were also removed. 
 
-After all these pre-processing steps, the pushshift data was reduced to ```24 flairs across a total of 446283 (~.45M) rows```.
+After these pre-processing steps, the pushshift data was reduced to ```24 flairs across a total of 446283 (~.45M) rows```.
 
 The following figure depicts the data distribution across the flairs: 
 
 ![Flair Distribution](./imgs/data.png)
+
+An additional step to balance out the data between different flairs was introduced later so as to reduce the bias of the models towards the more prevelant classes. This was done by downsampling the classes with more prominence, which are ```Political``` and ```Non-Political``` in this case. The distribution across the falirs post this step is as below: 
+
+![Flair Distribution 2](./imgs/data2.png)
 
 ## Data Modelling
 
@@ -89,8 +93,9 @@ The results of different models on the test set:
 | Random Forest  | Title + SelfText + URL <br> Title + URL <br> Title | - <br> - <br> - |
 | Deep Learning Models:     |               |              |
 | LSTM | Title | 58.6 |
-| DistilBERT  | Title  | 72.7 |
+| DistilBERT  | Title  | 72.70 |
 | <b>RoBERTa</b>  | <b>Title</b> | <b>78.00</b> |
+| AlBERT | Title | 76.40 |
   
 The following table elaborates the implementation details of each model:
 
@@ -101,7 +106,8 @@ The following table elaborates the implementation details of each model:
 | Tranformer Based Models | PyTorch, HuggingFace Transformers| Pretrained weights from [Hugging Face Tranformers](https://huggingface.co/transformers/pretrained_models.html) were Fine-Tuned <br> on the _balanced out_* dataset. |
 
 ## Future Work
-- Performing more experiments on the Deep Learning models with Hyperparameter Tuning and a more _balanced out_ dataset. 
+- Performing more experiments on the Deep Learning models with Hyperparameter Tuning and a more _balanced out_ dataset.
+- Using data augumentation and synthetic data generation techniques to 
 - Testing the performance of the models on other combinations of the input data.
 - Working out methods to extract the comments of the Reddit Posts so as to provide more of relevant features to the models. 
 
