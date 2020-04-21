@@ -1,5 +1,10 @@
-Flask==1.0.2
-requests==2.21.0
-praw==6.5.1
 numpy==1.16.2
+simpletransformers==0.24.8
+joblib==0.13.2
+torch==1.4.0
+requests==2.21.0
+Flask==1.0.2
+praw==6.5.1
 gunicorn==19.9.0
+transformers==2.8.0
+
