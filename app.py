@@ -84,11 +84,7 @@ def return_out(url, justLoad = False):
       if(justLoad):
         return -1
 
-    reddit = praw.Reddit(client_id='mZxKduOfxjNThA', \
-                        client_secret='s9yiNq1s7URgalN4O8IHqOhCl9w', \
-                        user_agent='rClassifier', \
-                        username='RachitB2500', \
-                        password='RacBan@1')
+    reddit = praw.Reddit( "     hidden credentials     " )
     print(1)
     sub = reddit.submission(url=url)
     data = [sub.title, sub.url, sub.selftext, sub.link_flair_text]
