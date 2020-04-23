@@ -93,8 +93,8 @@ The results of different models on the test set:
 | Random Forest  | Title + URL <br> Title | 51.7 <br> 49.8 | 58.8  <br> 57.4 |
 |    |               |              |          |
 | LSTM | Title | 58.6 | 59.5 |
-| DistilBERT  | Title  | 62.5 |  78.70 |
-| <b>RoBERTa</b>  | <b>Title</b> | <b>69.80</b> |  <b>79.40</b> |
+| DistilBERT  | Title  | 72.7 |  79.08 |
+| <b>RoBERTa</b>  | <b>Title</b> | <b>75.23</b> |  <b>79.40</b> |
 | AlBERT | Title | 66.40 |  76.40 |
 
 
