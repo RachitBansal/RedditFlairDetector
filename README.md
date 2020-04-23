@@ -1,5 +1,5 @@
 # RedditFlairDetector
-This project aims at identifying the Flair (Reddit terminology for _category_) of a given Submission (_post_) the r/India Subreddit.
+This project aims at identifying the Flair (Reddit terminology for _category_) of a given Submission (_post_) in the r/India Subreddit.
 
 ***Test the App Live: https://rflairdetector.herokuapp.com/***
 
@@ -96,7 +96,7 @@ The results of different models on the test set:
 |    |               |              |          |
 | LSTM | Title | 58.6 | 59.5 |
 | DistilBERT  | Title <br> Title+URL  | 68.4 <br> 72.4 | 74.3 <br> 79.08 |
-| <b>RoBERTa</b>  | Title <br> Title+URL | 71.20 <br> 75.23 | 76.4 <b>79.40</b> |
+| <b>RoBERTa</b>  | Title <br> Title+URL | 71.20 <br> 75.23 | 76.4 <br> <b>79.40</b> |
 | AlBERT | Title <br> Title+URL | 66.40 <br> 71.5 | 73.54 <br> 76.40 |
 
 
