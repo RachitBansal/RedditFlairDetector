@@ -14,17 +14,16 @@ from simpletransformers.classification import MultiLabelClassificationModel
 
 model_path = str(os.path.dirname(__file__)) + '/model_weights/pytorch_model.bin'
 
-# model_path = '.' + '/model_weights/pytorch_model.bin'
-
 app = flask.Flask(__name__, template_folder='templates', static_folder='assets')
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
     if flask.request.method == 'GET':
         return flask.render_template('index.html')
+
     if flask.request.method == 'POST':
         url = flask.request.form['url']
-    
+
     actual, pred = return_out(url)
     return flask.render_template('index.html', pred = pred, act = actual)
 
@@ -32,7 +31,7 @@ def main():
 @app.route('/automated_testing', methods=['POST'])
 def automated_testing():
     print(request.files)
-    attachment = request.files['txtf']
+    attachment = request.files['upload_file']
     urls = attachment.read()
     if urls == "":
       if 'url' not in request.args:
@@ -48,12 +47,11 @@ def automated_testing():
 
         return jsonify(final_result)
 
-    elif 'txtf' in request.files:
+    elif 'upload_file' in request.files:
         urls = urls.decode("utf-8")
 
-        print("\n\n\n\n")
         print(urls)
-        print("\n\n\n\n")
+        print("\n")
 
         urls_list = str(urls).split('\n')
 
@@ -73,19 +71,36 @@ def automated_testing():
           
         return jsonify(lists)
 
-def return_out(url):
+def return_out(url, justLoad = False):
+    global loaded
+    global model_
+    if(not loaded):
+      model_ = MultiLabelClassificationModel('distilbert', str(os.path.dirname(__file__)) + '/model_weights/', use_cuda=False, num_labels=12, args = args)
+      checkpoint = torch.load(model_path, map_location='cpu')
+      model_.model.load_state_dict(checkpoint)
+      model_.model.eval()
+      loaded = True
+      print("\n\nModel Loaded\n\n")
+      if(justLoad):
+        return -1
+
     reddit = praw.Reddit(client_id='mZxKduOfxjNThA', \
                         client_secret='s9yiNq1s7URgalN4O8IHqOhCl9w', \
                         user_agent='rClassifier', \
                         username='RachitB2500', \
                         password='RacBan@1')
-    
+    print(1)
     sub = reddit.submission(url=url)
     data = [sub.title, sub.url, sub.selftext, sub.link_flair_text]
+    print("\n", data[0], "\n")
 
     data[1] = processURL(data[1])
+    
+    print("\n", data[1], "\n")
 
     preds = np.argmax(model_.predict([data[0] + ' ' + data[1]])[1])
+
+    print("\n Preds Loaded \n")
     
     preds = enc[preds+1]
     actual = data[3]
@@ -120,9 +135,9 @@ enc = {
 }
 
 args = {
-    "output_dir": "outputs/",
-    "cache_dir": str(os.path.dirname(__file__)) + "./model_weights/",
-    "best_model_dir": "outputs/best_model/",
+    "output_dir": "../tmp/",
+    "cache_dir": "../tmp/",
+    "best_model_dir": "../tmp/",
 
     "fp16": False,
     "fp16_opt_level": "O1",
@@ -144,16 +159,16 @@ args = {
     "evaluate_during_training_steps": 2000,
     "evaluate_during_training_verbose": False,
     "use_cached_eval_features": False,
-    "save_eval_checkpoints": True,
-    "no_cache": False,
-    "save_model_every_epoch": True,
+    "save_eval_checkpoints": False,
+    "no_cache": True,
+    "save_model_every_epoch": False,
     "tensorboard_dir": None,
 
-    "overwrite_output_dir": True,
-    "reprocess_input_data": True,
+    "overwrite_output_dir": False,
+    "reprocess_input_data": False,
 
     "process_count": cpu_count() - 2 if cpu_count() > 2 else 1,
-    "n_gpu": 1,
+    "n_gpu": 0,
     "silent": False,
     "use_multiprocessing": True,
 
@@ -171,10 +186,9 @@ args = {
     "config": {},
 }
 
-model_ = MultiLabelClassificationModel('distilbert', './model_weights/', num_labels=12, args = args)
-checkpoint = torch.load(model_path)
-model_.model.load_state_dict(checkpoint)
-model_.model.eval()
+loaded = False
+model_ = -1
+return_out(None, justLoad = True)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
