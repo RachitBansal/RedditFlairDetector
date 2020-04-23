@@ -1,6 +1,8 @@
 # RedditFlairDetector
 This project aims at identifying the Flair (Reddit terminology for _category_) of a given Submission (_post_) the r/India Subreddit.
 
+***Test the App Live: https://rflairdetector.herokuapp.com/***
+
 ## Tasks Undertaken:
 <details><summary><b>1. Data Acquisition</b></summary>
   <p>
@@ -113,6 +115,12 @@ To further analyse the quality of the model, ROC Curves were drawn using the pre
 
 The variation in the accuracy of these flairs was also reflected while testing the model on the test set, and is very much correlated with the amount of data collected for them (as mentioned above). 
 
+## Deploying- Tricks and Tips (discovered experimentally)
+The following are the methods I used to make my app run faster and avoid the 30s timeout on Heroku:
+- Used multiple workers and threads for ```gunicorn```, also experimented with toggling timeout 
+- Used the ```preload``` functionality to load the code before processing the GET request
+- Used nested POST requests for ```automated testing``` with text files.  
+
 ## Future Work
 - Performing more experiments on the Deep Learning models with Hyperparameter Tuning and a more _balanced out_ dataset.
 - Using data augumentation and synthetic data generation techniques to 
@@ -129,3 +137,4 @@ Language Understanding. 2018 ](https://arxiv.org/pdf/1810.04805)
 - [Jeremy Howard, Sebastian Ruder. ULMFIT. 2018](https://arxiv.org/pdf/1801.06146.pdf)
 - [ Vasvani et. al. Attention is all you need. Nips 2017](https://arxiv.org/pdf/1706.03762)
 - [Deploying ML Models on Heroku](https://towardsdatascience.com/create-an-api-to-deploy-machine-learning-models-using-flask-and-heroku-67a011800c50)
+- [gunicorn settings](http://docs.gunicorn.org/en/stable/settings.html#timeout)
