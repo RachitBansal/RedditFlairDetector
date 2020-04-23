@@ -3,6 +3,32 @@ This project aims at identifying the Flair (Reddit terminology for _category_) o
 
 ***Test the App Live: https://rflairdetector.herokuapp.com/***
 
+## To reproduce the environment locally:
+1. Clone this repository 
+
+    ```git clone https://github.com/RachitBansal/RedditFlairDetector.git```
+
+2. Download the following files and store them in the working directory inside a folder named ```model_weights```
+  
+    **Model weights:** https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/pytorch_model.bin<br>
+    **Model Configuration:** https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/config.json<br>
+    **Model Vocabulary:** https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/vocab.txt
+  
+3. Initialise and run the Flask App:
+
+    For Linux and Mac:
+
+    ```$ export FLASK_APP=app.py```<br>
+    ```$ flask run```
+
+    For Windows cmd:
+
+    ```> set FLASK_APP=app.py```<br>
+    ```> flask run```
+    
+ You should see the app running at the localhost mentioned there :rainbow:
+
+
 ## Tasks Undertaken:
 <details><summary><b>1. Data Acquisition</b></summary>
   <p>
@@ -22,9 +48,9 @@ This project aims at identifying the Flair (Reddit terminology for _category_) o
 
 <details><summary><b>3. Deploying on the Web</b></summary>
   <p>
-    Designed the UI using HTML and CSS <br>
+    Designed the UI using HTML and CSS<br>
     Integrated with Flask and deployed on Heroku <br>
-    <a href = "https://rflairdetection.heroku.com">The Website is LIVE</a>
+    <a href = "https://rflairdetector.heroku.com">The Website is LIVE</a>
   </p>
 </details>
 
@@ -109,9 +135,6 @@ The following table elaborates the implementation details of each model:
 | Tranformer Based Models | PyTorch, HuggingFace Transformers| Pretrained weights from [Hugging Face Transformers](https://huggingface.co/transformers/pretrained_models.html) were Fine-Tuned <br> on the balanced out dataset. |
 
 **DistilBERT (cased) was chosen finally because of its lightness (65M Parameters) along with a good accuracy.** 
-
-***Model weights: https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/pytorch_model.bin***
-***Model Configuration: https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/config.json***
 
 To further analyse the quality of the model, ROC Curves were drawn using the predictions made by DistilBERT, some of them are shown below. Average ROC over all categories: 93.5
 
