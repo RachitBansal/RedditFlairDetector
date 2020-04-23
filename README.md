@@ -109,7 +109,7 @@ The following table elaborates the implementation details of each model:
 
 To further analyse the quality of the model, ROC Curves were drawn using the predictions made by DistilBERT, some of them are shown below:
 
-![ROC-1](./imgs/DistilBERT3.png)  ![ROC-2](./imgs/DistilBERT5.png)  ![ROC-1](./imgs/DistilBERT8.png)
+![ROC-1](./imgs/DistilBERT8.png) ![ROC-1](./imgs/DistilBERT10.png) ![ROC-1](./imgs/DistilBERT3.png)  ![ROC-2](./imgs/DistilBERT5.png)  
 
 The variation in the accuracy of these flairs was also reflected while testing the model on the test set, and is very much correlated with the amount of data collected for them (as mentioned above). 
 
