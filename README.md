@@ -58,7 +58,7 @@ The following features were extracted:
 | selftext           | STR             | description of the post               | Y               | Y                   |
 | title              | STR             | title of the post                     | Y               | Y                   |
 | url                | STR             | URL associated with the post          | N                | Y                   |
-| __comments__           | __LIST__            | __list of top comments__        | __Y__               | __N__                    |__
+| __comments__           | __LIST__            | __list of top comments__        | __Y__               | __N__                  |
 | created_utc        | INT             | timestamp of post                     | N                | Y                   |
 
 Shape of PRAW Data: ```(2925, 5)``` <br>
@@ -84,26 +84,34 @@ An additional step to balance out the data between different flairs was introduc
 
 The results of different models on the test set:
 
-| Model | Features        | Accuracy             |   Unbalanced Data  | Balanced-out Data  |    
-| ---   | ---                  | ---   |
-| Machine Learning Models:      |         |         |
+| Model | Features        |   Unbalanced Data Acc.  | Balanced-out Data Acc. |    
+| ---   | ---                  | ---   |          ---           |
+|     |         |         |               |
 | Logistic Regression | Title + SelfText + URL <br> Title + URL <br> Title | 61.7 <br> 63.8 <br> 58.4 | 63.0 <br> 62.5 <br> 59.5 |
 | MultinomialNB  | Title + SelfText + URL <br> Title + URL <br> Title | 51.8 <br> 52.0 <br> 52.1 | 51.8 <br> 52.0 <br> 52.1 |
 | SVM Classifier  | Title + SelfText + URL <br> Title + URL <br> Title | 48.5 <br> 49.5 <br> 40.0 |  48.5 <br> 49.5 <br> 40.0 |
-| Random Forest  | Title + SelfText + URL <br> Title + URL <br> Title | - <br> - <br> - |
-| Deep Learning Models:     |               |              |
+| Random Forest  | Title + URL <br> Title | 51.7 <br> 49.8 | 58.8  <br> 57.4 |
+|    |               |              |          |
 | LSTM | Title | 58.6 | 59.5 |
-| DistilBERT  | Title  | 57.60 |  72.70 |
-| <b>RoBERTa</b>  | <b>Title</b> | <b>69.80</b> |  <b>78.00</b> |
+| DistilBERT  | Title  | 62.5 |  78.70 |
+| <b>RoBERTa</b>  | <b>Title</b> | <b>69.80</b> |  <b>79.40</b> |
 | AlBERT | Title | 66.40 |  76.40 |
-  
+
+
+
 The following table elaborates the implementation details of each model:
 
 | Models             | Dependencies           | Additional Techniques            |
 | ---       | ---       | ----      |
 | Logistic Regression, MultinomialNB, SVM, Random Forest | SciKit Learn, NLTK   | The Title, SelfText and URL were seperately <br> processed using Regular Expressions |
 | LSTM | PyTorch, TorchText | Completely implemented using PyTorch, the input and output texts were represented <br> in the form of TorchText Data Objects. |
-| Tranformer Based Models | PyTorch, HuggingFace Transformers| Pretrained weights from [Hugging Face Transformers](https://huggingface.co/transformers/pretrained_models.html) were Fine-Tuned <br> on the _balanced out_* dataset. |
+| Tranformer Based Models | PyTorch, HuggingFace Transformers| Pretrained weights from [Hugging Face Transformers](https://huggingface.co/transformers/pretrained_models.html) were Fine-Tuned <br> on the balanced out dataset. |
+
+To further analyse the quality of the model, ROC Curves were drawn using the predictions made by DistilBERT, some of them are shown below:
+
+![ROC-1](./imgs/DistilBERT3.png)  ![ROC-2](./imgs/DistilBERT5.png)  ![ROC-1](./imgs/DistilBERT8.png)
+
+The variation in the accuracy of these flairs was also reflected while testing the model on the test set, and is very much correlated with the amount of data collected for them (as mentioned above). 
 
 ## Future Work
 - Performing more experiments on the Deep Learning models with Hyperparameter Tuning and a more _balanced out_ dataset.
