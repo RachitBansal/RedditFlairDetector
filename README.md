@@ -95,10 +95,16 @@ The results of different models on the test set:
 | Random Forest  | Title + URL <br> Title | 51.7 <br> 49.8 | 58.8  <br> 57.4 |
 |    |               |              |          |
 | LSTM | Title | 58.6 | 59.5 |
-| DistilBERT  | Title  | 72.7 |  79.08 |
-| <b>RoBERTa</b>  | <b>Title</b> | <b>75.23</b> |  <b>79.40</b> |
-| AlBERT | Title | 66.40 |  76.40 |
-
+| DistilBERT  | Title <br> Title+URL  | 68.4 <br> 72.4 | 74.3 <br> 79.08 |
+| <b>RoBERTa</b>  | Title <br> Title+URL | 71.20 <br> 75.23 | 76.4 <b>79.40</b> |
+| AlBERT | Title <br> Title+URL | 66.40 |  76.40 |
+Title + URL
+Title 	61.7
+63.8
+58.4 	63.0
+62.5
+59.5
+MultinomialNB 	Title +
 
 
 The following table elaborates the implementation details of each model:
