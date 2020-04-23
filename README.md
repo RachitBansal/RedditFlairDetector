@@ -97,14 +97,7 @@ The results of different models on the test set:
 | LSTM | Title | 58.6 | 59.5 |
 | DistilBERT  | Title <br> Title+URL  | 68.4 <br> 72.4 | 74.3 <br> 79.08 |
 | <b>RoBERTa</b>  | Title <br> Title+URL | 71.20 <br> 75.23 | 76.4 <b>79.40</b> |
-| AlBERT | Title <br> Title+URL | 66.40 |  76.40 |
-Title + URL
-Title 	61.7
-63.8
-58.4 	63.0
-62.5
-59.5
-MultinomialNB 	Title +
+| AlBERT | Title <br> Title+URL | 66.40 <br> 71.5 | 73.54 <br> 76.40 |
 
 
 The following table elaborates the implementation details of each model:
@@ -140,11 +133,11 @@ The following are the methods I used to make my app run faster and avoid the 30s
 
 ## References
 - pushshift.io - [GitHub Repsitory and Documentation](https://github.com/pushshift/api)
-- Pytorch Implementation of BERT - [HuggingFace Github repo](https://github.com/huggingface/pytorch-pretrained-BERT)
 - [Simple Transformers](https://github.com/ThilinaRajapakse/simpletransformers#saveevalcheckpoints)
 - [Cho et. al. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation. 2014](https://arxiv.org/pdf/1406.1078.pdf)
 - [Devlin et. al. BERT: Pre-training of Deep Bidirectional Transformers for
 Language Understanding. 2018 ](https://arxiv.org/pdf/1810.04805)
+- Tranformer Models by HuggingFace - [HuggingFace Github repo](https://huggingface.co/transformers/pretrained_models.html)
 - [Jeremy Howard, Sebastian Ruder. ULMFIT. 2018](https://arxiv.org/pdf/1801.06146.pdf)
 - [ Vasvani et. al. Attention is all you need. Nips 2017](https://arxiv.org/pdf/1706.03762)
 - [Deploying ML Models on Heroku](https://towardsdatascience.com/create-an-api-to-deploy-machine-learning-models-using-flask-and-heroku-67a011800c50)
