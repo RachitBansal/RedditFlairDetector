@@ -109,7 +109,12 @@ The following table elaborates the implementation details of each model:
 | LSTM | PyTorch, TorchText | Completely implemented using PyTorch, the input and output texts were represented <br> in the form of TorchText Data Objects. |
 | Tranformer Based Models | PyTorch, HuggingFace Transformers| Pretrained weights from [Hugging Face Transformers](https://huggingface.co/transformers/pretrained_models.html) were Fine-Tuned <br> on the balanced out dataset. |
 
-To further analyse the quality of the model, ROC Curves were drawn using the predictions made by DistilBERT, some of them are shown below:
+**DistilBERT (cased) was chosen finally because of its lightness (65M Parameters) along with a good accuracy.** 
+
+***Model weights: https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/pytorch_model.bin***
+***Model Configuration: https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/config.json***
+
+To further analyse the quality of the model, ROC Curves were drawn using the predictions made by DistilBERT, some of them are shown below. Average ROC over all categories: 93.5
 
 ![ROC-1](./imgs/DistilBERT8.png) ![ROC-1](./imgs/DistilBERT10.png) ![ROC-1](./imgs/DistilBERT3.png)  ![ROC-2](./imgs/DistilBERT5.png)  
 
