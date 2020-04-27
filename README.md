@@ -7,14 +7,18 @@ This project aims at identifying the Flair (Reddit terminology for _category_) o
 1. Clone this repository 
 
     ```git clone https://github.com/RachitBansal/RedditFlairDetector.git```
+    
+2. Install the requirements on your local system or on a virtualenv
 
-2. Download the following files and store them in the working directory inside a folder named ```model_weights```
+    ```pip install -r requirements.txt```
+
+3. Download the following files and store them in the working directory inside a folder named ```model_weights```
   
     **Model weights:** https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/pytorch_model.bin<br>
     **Model Configuration:** https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/config.json<br>
     **Model Vocabulary:** https://rflairdetector.s3.us-east-2.amazonaws.com/model_weights/vocab.txt
   
-3. Initialise and run the Flask App:
+4. Initialise and run the Flask App:
 
     For Linux and Mac:
 
