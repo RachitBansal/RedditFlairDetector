@@ -2,7 +2,7 @@ numpy==1.16.2
 simpletransformers==0.24.8
 joblib==0.13.2
 http://download.pytorch.org/whl/cpu/torch-0.4.1-cp36-cp36m-linux_x86_64.whl 
-requests==2.21.0
+requests==2.31.0
 Flask==1.0.2
 praw==6.5.1
 gunicorn==19.9.0
